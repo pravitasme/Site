@@ -4,4 +4,14 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+  <servlet>
+    <servlet-name>HelloName</servlet-name>
+    <servlet-class>ru.lanit.mo.web.controller.servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HelloName</servlet-name>
+    <url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
