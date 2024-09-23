@@ -16,9 +16,9 @@ public class servlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, @NotNull HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
+        String name = req.getParameter("name");
         PrintWriter out = resp.getWriter();
-        String name = "Petr";
-        out.printf("Hello %s!", name);
+        out.printf("Hello, %s!", name);
         out.close();
     }
 }
