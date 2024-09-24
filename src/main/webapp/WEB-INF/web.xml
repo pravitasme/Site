@@ -6,21 +6,48 @@
   <display-name>Archetype Created Web Application</display-name>
 
   <servlet>
-    <servlet-name>SaveName</servlet-name>
-    <servlet-class>ru.lanit.mo.web.controller.servlet</servlet-class>
+    <servlet-name>firstName</servlet-name>
+    <servlet-class>ru.lanit.mo.web.controller.firstName</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>SaveName</servlet-name>
-    <url-pattern>/servlet</url-pattern>
+    <servlet-name>firstName</servlet-name>
+    <url-pattern>/firstName</url-pattern>
   </servlet-mapping>
   
   <servlet>
-    <servlet-name>HelloName</servlet-name>
-    <servlet-class>ru.lanit.mo.web.controller.servlet2</servlet-class>
+    <servlet-name>lastName</servlet-name>
+    <servlet-class>ru.lanit.mo.web.controller.lastName</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>HelloName</servlet-name>
-    <url-pattern>/servlet2</url-pattern>
+    <servlet-name>lastName</servlet-name>
+    <url-pattern>/lastName</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>patronymic</servlet-name>
+    <servlet-class>ru.lanit.mo.web.controller.patronymic</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>patronymic</servlet-name>
+    <url-pattern>/patronymic</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>saveItAll</servlet-name>
+    <servlet-class>ru.lanit.mo.web.controller.saveItAll</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>saveItAll</servlet-name>
+    <url-pattern>/aLittleBitLeft</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>whoAmI</servlet-name>
+    <servlet-class>ru.lanit.mo.web.controller.whoAmI</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>whoAmI</servlet-name>
+    <url-pattern>/youAre</url-pattern>
   </servlet-mapping>
   
 </web-app>
