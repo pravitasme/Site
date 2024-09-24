@@ -11,21 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-//@WebServlet("/hello")
-public class servlet extends HttpServlet {
+public class servlet2 extends HttpServlet {
     @Override
     protected void doPost(@NotNull HttpServletRequest req, @NotNull HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
 
         PrintWriter out = resp.getWriter();
 
-        String name = req.getParameter("name");
+        Cookie[] cookies = req.getCookies();
 
-        Cookie cookies = new Cookie("userName", name);
-        resp.addCookie(cookies);
-
-        //submit button
-        out.println("<html> <body> <form action='/servlet2'> <input type='submit' value='go'> </form> </body> </html>");
+        out.printf("Hello %s", cookies[0].getValue());
 
         out.close();
     }
