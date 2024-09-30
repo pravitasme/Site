@@ -8,10 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class whoAmI  extends HttpServlet {
+public class whoAmI  extends HttpServlet
+{
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+    {
         res.setContentType("text/html");
 
         PrintWriter out = res.getWriter();
@@ -20,7 +21,8 @@ public class whoAmI  extends HttpServlet {
 
         out.println("You are");
 
-        for (Cookie cookie : cookies) {
+        for (Cookie cookie : cookies)
+        {
             if (cookie.getName().equals("lastName"))
             {
                 out.println(cookie.getValue());
