@@ -1,8 +1,10 @@
 <html>
     <body>
-        <h3>Let's find out who you are</h3>
-        <form action="/firstName" method="post">
-            <input type="submit" value="Start">
+        <h3>Who you are?</h3>
+        <form action="/tabulate" method="post">
+            First name: <input type="text"> <br> <br>
+            Last name: <input type="text"> <br> <br>
+            Patronymic: <input type="text">
         </form>
     </body>
 </html>

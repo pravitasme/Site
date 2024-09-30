@@ -27,6 +27,7 @@ public class filter implements Filter
 
         System.out.println("got request");
         filterChain.doFilter(servletRequest, servletResponse);
+        out.close();
     }
 
     @Override

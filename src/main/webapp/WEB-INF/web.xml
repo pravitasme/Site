@@ -7,7 +7,7 @@
 
   <servlet>
     <servlet-name>firstName</servlet-name>
-    <servlet-class>ru.lanit.mo.web.controller.firstName</servlet-class>
+    <servlet-class>ru.lanit.mo.web.controller.tabulate</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>firstName</servlet-name>
@@ -58,7 +58,6 @@
       <param-value>true</param-value>
     </init-param>
   </filter>
-
   <filter-mapping>
     <filter-name>gotRequest</filter-name>
     <url-pattern>/*</url-pattern>
@@ -67,8 +66,11 @@
   <listener>
     <listener-class>listeners.listener</listener-class>
   </listener>
+
   <listener>
     <listener-class>listeners.listener2</listener-class>
   </listener>
+
+
 
 </web-app>
