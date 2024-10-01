@@ -4,10 +4,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class dataExport extends HttpServlet
 {
@@ -16,10 +13,34 @@ public class dataExport extends HttpServlet
 
     }
 
-    private static ResultSet selectFromUserTable()
-    {
+    private static ResultSet selectFromUserTable() throws SQLException, ClassNotFoundException {
         Connection dbConnection = null;
+        PreparedStatement preparedStatement = null;
+
         ResultSet resultSet = null;
+
+        try
+        {
+            dbConnection = getDBConnection();
+            preparedStatement = dbConnection.prepareStatement("select * from user");
+            resultSet = preparedStatement.executeQuery();
+            //https://www.geeksforgeeks.org/java-program-to-retrieve-contents-of-a-table-using-jdbc-connection/
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        finally
+        {
+            if (statement != null)
+            {
+                statement.close();
+            }
+            if (dbConnection != null)
+            {
+                dbConnection.close();
+            }
+        }
 
         return resultSet;
     }
