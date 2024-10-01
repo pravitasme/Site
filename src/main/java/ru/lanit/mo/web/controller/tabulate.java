@@ -1,13 +1,13 @@
 package ru.lanit.mo.web.controller;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class tabulate extends HttpServlet
 {
@@ -18,29 +18,65 @@ public class tabulate extends HttpServlet
         String lastName = req.getParameter("lastName");
         String patronymic = req.getParameter("patronymic");
 
+//        try
+//        {
+//            insertIntoUserTable(firstName, lastName, patronymic);
+//        }
+//        catch (SQLException e)
+//        {
+//            throw new RuntimeException(e);
+//        }
+
+        System.out.println(firstName + " " + lastName + " " + patronymic);
+
+        res.sendRedirect("/illShowYouThemAll.jsp");
     }
 
-    private static Connection getDBConnection()
+    private static void insertIntoUserTable(String firstName, String lastName, String patronymic) throws SQLException
+    {
+        Connection dbConnection = null;
+        Statement statement = null;
+
+        String insertIntoUserTable = "insert into users(firstname, lastname, patronymic) VALUES (" + "'" + firstName + "'" + "," + "'" + lastName + "'" + "," + "'" + patronymic + "'" + ")";
+
+        try
+        {
+            dbConnection = getDBConnection();
+            statement = dbConnection.createStatement();
+
+            statement.execute(insertIntoUserTable);
+        }
+        catch (SQLException | ClassNotFoundException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        finally
+        {
+            if (statement != null)
+            {
+                statement.close();
+            }
+            if (dbConnection != null)
+            {
+                dbConnection.close();
+            }
+        }
+    }
+
+    private static Connection getDBConnection() throws ClassNotFoundException, SQLException
     {
         Connection dbConnection = null;
 
         try
         {
-            Class.forName(org.postgresql.Driver.class.getName());
+            Class.forName("org.postgresql.Driver");
         }
         catch (ClassNotFoundException e)
         {
             System.out.println(e.getMessage());
         }
 
-        try
-        {
-            dbConnection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "1324");
-        }
-        catch (SQLException e)
-        {
-            System.out.println(e.getMessage());
-        }
+        dbConnection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "1324");
         return dbConnection;
     }
 }

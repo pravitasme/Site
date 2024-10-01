@@ -6,62 +6,13 @@
   <display-name>Archetype Created Web Application</display-name>
 
   <servlet>
-    <servlet-name>firstName</servlet-name>
+    <servlet-name>saveMouse</servlet-name>
     <servlet-class>ru.lanit.mo.web.controller.tabulate</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>firstName</servlet-name>
-    <url-pattern>/firstName</url-pattern>
+    <servlet-name>saveMouse</servlet-name>
+    <url-pattern>/tabulate</url-pattern>
   </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>lastName</servlet-name>
-    <servlet-class>ru.lanit.mo.web.controller.lastName</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>lastName</servlet-name>
-    <url-pattern>/lastName</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>patronymic</servlet-name>
-    <servlet-class>ru.lanit.mo.web.controller.patronymic</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>patronymic</servlet-name>
-    <url-pattern>/patronymic</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>saveItAll</servlet-name>
-    <servlet-class>ru.lanit.mo.web.controller.saveItAll</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>saveItAll</servlet-name>
-    <url-pattern>/aLittleBitLeft</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>whoAmI</servlet-name>
-    <servlet-class>ru.lanit.mo.web.controller.whoAmI</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>whoAmI</servlet-name>
-    <url-pattern>/youAre</url-pattern>
-  </servlet-mapping>
-
-  <filter>
-    <filter-name>gotRequest</filter-name>
-    <filter-class>filters.filter</filter-class>
-    <init-param>
-      <param-name>active</param-name>
-      <param-value>true</param-value>
-    </init-param>
-  </filter>
-  <filter-mapping>
-    <filter-name>gotRequest</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
   
   <listener>
     <listener-class>listeners.listener</listener-class>
@@ -70,7 +21,5 @@
   <listener>
     <listener-class>listeners.listener2</listener-class>
   </listener>
-
-
 
 </web-app>
