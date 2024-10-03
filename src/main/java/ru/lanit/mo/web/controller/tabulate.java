@@ -18,18 +18,18 @@ public class tabulate extends HttpServlet
         String lastName = req.getParameter("lastName");
         String patronymic = req.getParameter("patronymic");
 
-//        try
-//        {
-//            insertIntoUserTable(firstName, lastName, patronymic);
-//        }
-//        catch (SQLException e)
-//        {
-//            throw new RuntimeException(e);
-//        }
+        /*try
+        {
+            insertIntoUserTable(firstName, lastName, patronymic);
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }*/
 
         System.out.println(firstName + " " + lastName + " " + patronymic);
 
-        res.sendRedirect("/illShowYouThemAll.jsp");
+        res.sendRedirect("/selectMouse");
     }
 
     private static void insertIntoUserTable(String firstName, String lastName, String patronymic) throws SQLException

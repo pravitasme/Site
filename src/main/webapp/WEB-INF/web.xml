@@ -9,17 +9,21 @@
     <servlet-name>saveMouse</servlet-name>
     <servlet-class>ru.lanit.mo.web.controller.tabulate</servlet-class>
   </servlet>
+  
+  <servlet>
+    <servlet-name>selectMouse</servlet-name>
+    <servlet-class>ru.lanit.mo.web.controller.dataExport</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>saveMouse</servlet-name>
     <url-pattern>/tabulate</url-pattern>
   </servlet-mapping>
-  
-  <listener>
-    <listener-class>listeners.listener</listener-class>
-  </listener>
 
-  <listener>
-    <listener-class>listeners.listener2</listener-class>
-  </listener>
+  <servlet-mapping>
+    <servlet-name>selectMouse</servlet-name>
+    <url-pattern>/selectMouse</url-pattern>
+  </servlet-mapping>
+
 
 </web-app>
