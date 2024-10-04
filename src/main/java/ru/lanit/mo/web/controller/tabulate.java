@@ -27,8 +27,6 @@ public class tabulate extends HttpServlet
             throw new RuntimeException(e);
         }*/
 
-        System.out.println(firstName + " " + lastName + " " + patronymic);
-
         res.sendRedirect("/selectMouse");
     }
 
