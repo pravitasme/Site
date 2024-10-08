@@ -1,6 +1,6 @@
 package ru.lanit.mo.web.entity;
 
-public class User
+public class UserDTO
 {
     private int id;
     private String firstname;

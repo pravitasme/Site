@@ -2,10 +2,9 @@ package ru.lanit.mo.web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.lanit.mo.web.entity.User;
+import ru.lanit.mo.web.entity.UserDTO;
 import ru.lanit.mo.web.repository.UserDAO;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -20,33 +19,33 @@ public class UserService
         this.userDAO = userDAO;
     }
 
-    public List<User> getAllUsers() throws SQLException, ClassNotFoundException
+    public List<UserDTO> getAllUsers() throws SQLException, ClassNotFoundException
     {
         userDAO.getDBConnection();
-        List<User> users = userDAO.getAllUsers();
+        List<UserDTO> userDTOS = userDAO.getAllUsers();
         userDAO.closeConnection();
-        return users;
+        return userDTOS;
     }
 
-    public void addUser(User user) throws SQLException, ClassNotFoundException
+    public void addUser(UserDTO userDTO) throws SQLException, ClassNotFoundException
     {
         userDAO.getDBConnection();
-        userDAO.addUser(user);
+        userDAO.addUser(userDTO);
         userDAO.closeConnection();
     }
 
-    public User getUserByID(int id) throws SQLException, ClassNotFoundException
+    public UserDTO getUserByID(int id) throws SQLException, ClassNotFoundException
     {
         userDAO.getDBConnection();
-        User user = userDAO.getUserByID(id);
+        UserDTO userDTO = userDAO.getUserByID(id);
         userDAO.closeConnection();
-        return user;
+        return userDTO;
     }
 
-    public void updateUser(User user) throws SQLException, ClassNotFoundException
+    public void updateUser(UserDTO userDTO) throws SQLException, ClassNotFoundException
     {
         userDAO.getDBConnection();
-        userDAO.updateUser(user);
+        userDAO.updateUser(userDTO);
         userDAO.closeConnection();
     }
 

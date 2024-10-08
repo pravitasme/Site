@@ -7,8 +7,8 @@
 <html>
     <body>
         <h1>Edit User</h1>
-        <%--@elvariable id="user" type="ru.lanit.mo.web.entity.User"--%>
-        <form:form method="post" action="/saveEditedUser" modelAttribute="user">
+        <%--@elvariable id="userDTO" type="ru.lanit.mo.web.entity.UserDTO"--%>
+        <form:form method="post" action="/saveEditedUser" modelAttribute="userDTO">
             <table>
                 <tr>
                     <td></td>
@@ -27,7 +27,7 @@
                     <td><form:input path="patronymic"/></td>
                 </tr>
             </table>
-            <input type="submit" value="save edited user" />
+            <input type="submit" value="save edited userDTO" />
         </form:form>
     </body>
 </html>

@@ -1,7 +1,7 @@
 package ru.lanit.mo.web.repository;
 
 import org.springframework.stereotype.Repository;
-import ru.lanit.mo.web.entity.User;
+import ru.lanit.mo.web.entity.UserDTO;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,60 +17,60 @@ public class UserDAO
 
     static Connection dbConnection = null;
 
-    public List<User> getAllUsers() throws SQLException, ClassNotFoundException
+    public List<UserDTO> getAllUsers() throws SQLException, ClassNotFoundException
     {
         String selectFromUser = "select * from users";
 
-        List<User> users = new ArrayList<User>();
+        List<UserDTO> userDTOS = new ArrayList<UserDTO>();
 
         ResultSet resultSet = dbConnection.createStatement().executeQuery(selectFromUser);
 
         while (resultSet.next())
         {
-            User user = new User();
-            user.setId(resultSet.getInt("id"));
-            user.setFirstname(resultSet.getString("firstname"));
-            user.setLastname(resultSet.getString("lastname"));
-            user.setPatronymic(resultSet.getString("patronymic"));
-            users.add(user);
+            UserDTO userDTO = new UserDTO();
+            userDTO.setId(resultSet.getInt("id"));
+            userDTO.setFirstname(resultSet.getString("firstname"));
+            userDTO.setLastname(resultSet.getString("lastname"));
+            userDTO.setPatronymic(resultSet.getString("patronymic"));
+            userDTOS.add(userDTO);
         }
 
         resultSet.close();
 
-        return users;
+        return userDTOS;
     }
 
-    public void addUser(User user) throws SQLException, ClassNotFoundException
+    public void addUser(UserDTO userDTO) throws SQLException, ClassNotFoundException
     {
-        String addUser = "insert into users(firstname, lastname, patronymic) VALUES (" + "'" + user.getFirstname() + "'" + "," + "'" + user.getLastname() + "'" + "," + "'" + user.getPatronymic() + "'" + ")";
+        String addUser = "insert into users(firstname, lastname, patronymic) VALUES (" + "'" + userDTO.getFirstname() + "'" + "," + "'" + userDTO.getLastname() + "'" + "," + "'" + userDTO.getPatronymic() + "'" + ")";
 
         dbConnection.createStatement().execute(addUser);
     }
 
-    public User getUserByID(int id) throws SQLException, ClassNotFoundException
+    public UserDTO getUserByID(int id) throws SQLException, ClassNotFoundException
     {
         String getUserByID = "select * from users where users.id = " + id;
 
         ResultSet resultSet = dbConnection.createStatement().executeQuery(getUserByID);
 
-        User user = new User();
+        UserDTO userDTO = new UserDTO();
 
         while (resultSet.next())
         {
-            user.setId(resultSet.getInt("id"));
-            user.setFirstname(resultSet.getString("firstname"));
-            user.setLastname(resultSet.getString("lastname"));
-            user.setPatronymic(resultSet.getString("patronymic"));
+            userDTO.setId(resultSet.getInt("id"));
+            userDTO.setFirstname(resultSet.getString("firstname"));
+            userDTO.setLastname(resultSet.getString("lastname"));
+            userDTO.setPatronymic(resultSet.getString("patronymic"));
         }
 
         resultSet.close();
 
-        return user;
+        return userDTO;
     }
 
-    public void updateUser(User user) throws SQLException, ClassNotFoundException
+    public void updateUser(UserDTO userDTO) throws SQLException, ClassNotFoundException
     {
-        String updateUser = "update users set firstname = " + "'" + user.getFirstname() + "'" + ", " + "lastname = " + "'" + user.getLastname() + "'" + ", " + "patronymic = " + "'" + user.getPatronymic() + "'" + " where id = " + user.getId();
+        String updateUser = "update users set firstname = " + "'" + userDTO.getFirstname() + "'" + ", " + "lastname = " + "'" + userDTO.getLastname() + "'" + ", " + "patronymic = " + "'" + userDTO.getPatronymic() + "'" + " where id = " + userDTO.getId();
 
         dbConnection.createStatement().execute(updateUser);
     }

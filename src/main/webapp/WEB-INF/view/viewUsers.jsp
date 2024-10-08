@@ -8,7 +8,7 @@
   <h1>Users List</h1>
   <table border="2" width="50%">
     <tr><th>Id</th><th>FirstName</th><th>LastName</th><th>Patronymic</th><th>Edit</th><th>Delete</th></tr>
-    <c:forEach var="emp" items="${users}">
+    <c:forEach var="emp" items="${userDTOS}">
       <tr>
         <td>${emp.id}</td>
         <td>${emp.firstname}</td>
