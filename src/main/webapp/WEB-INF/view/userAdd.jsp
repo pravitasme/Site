@@ -10,11 +10,11 @@
             <table>
                 <tr>
                     <td>first name</td>
-                    <td><input name="firstName" type="text"></td>
+                    <td><input name="firstname" type="text"></td>
                 </tr>
                 <tr>
                     <td>last name</td>
-                    <td><input name="lastName" type="text"></td>
+                    <td><input name="lastname" type="text"></td>
                 </tr>
                 <tr>
                     <td>patronymic</td>

@@ -3,10 +3,7 @@ package ru.lanit.mo.web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import ru.lanit.mo.web.entity.User;
 import ru.lanit.mo.web.service.UserService;
 
@@ -27,11 +24,11 @@ public class UserController
         return "viewUsers";
     }
 
-    @RequestMapping("/addUser")
+    @RequestMapping("/userAdd")
     public String showForm(Model model)
     {
         model.addAttribute("user", new User());
-        return "addUser";
+        return "userAdd";
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -41,16 +38,16 @@ public class UserController
         return "redirect:/viewUsers";
     }
 
-    @RequestMapping(value = "/editUser/{id}")
+    @RequestMapping(value = "/userEdit/{id}")
     public String edit(@PathVariable int id, Model model) throws SQLException, ClassNotFoundException
     {
         User user = userService.getUserByID(id);
         model.addAttribute("user", user);
-        return "editUser";
+        return "userEdit";
     }
 
-    @RequestMapping(value = "/editSavedUser", method = RequestMethod.POST)
-    public String editSavedUser(@ModelAttribute("user") User user) throws SQLException, ClassNotFoundException
+    @RequestMapping(value = "/saveEditedUser", method = RequestMethod.POST)
+    public String saveEditedUser(@ModelAttribute("user") User user) throws SQLException, ClassNotFoundException
     {
         userService.updateUser(user);
         return "redirect:/viewUsers";

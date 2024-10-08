@@ -38,12 +38,7 @@ public class UserService
     public User getUserByID(int id) throws SQLException, ClassNotFoundException
     {
         userDAO.getDBConnection();
-        ResultSet resultSet = (ResultSet) userDAO.getUserByID(id);
-        User user = new User();
-        user.setId(resultSet.getInt("id"));
-        user.setFirstname(resultSet.getString("firstname"));
-        user.setLastname(resultSet.getString("lastname"));
-        user.setPatronymic(resultSet.getString("patronymic"));
+        User user = userDAO.getUserByID(id);
         userDAO.closeConnection();
         return user;
     }

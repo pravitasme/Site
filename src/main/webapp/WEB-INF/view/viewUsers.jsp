@@ -6,20 +6,20 @@
 <html>
   <body>
   <h1>Users List</h1>
-  <table border="2" width="70%" cellpadding="2">
+  <table border="2" width="50%">
     <tr><th>Id</th><th>FirstName</th><th>LastName</th><th>Patronymic</th><th>Edit</th><th>Delete</th></tr>
-    <c:forEach var="emp" items="${list}">
+    <c:forEach var="emp" items="${users}">
       <tr>
         <td>${emp.id}</td>
         <td>${emp.firstname}</td>
         <td>${emp.lastname}</td>
         <td>${emp.patronymic}</td>
-        <td><a href="editUser/${emp.id}">Edit</a></td>
+        <td><a href="userEdit/${emp.id}">Edit</a></td>
         <td><a href="deleteUser/${emp.id}">Delete</a></td>
       </tr>
     </c:forEach>
   </table>
   <br/>
-  <a href="addUser">Add New User</a>
+  <a href="userAdd">Add New User</a>
   </body>
 </html>

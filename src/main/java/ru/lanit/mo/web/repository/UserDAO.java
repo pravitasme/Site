@@ -17,7 +17,7 @@ public class UserDAO
 
     static Connection dbConnection = null;
 
-    public static List<User> getAllUsers() throws SQLException, ClassNotFoundException
+    public List<User> getAllUsers() throws SQLException, ClassNotFoundException
     {
         String selectFromUser = "select * from users";
 
@@ -40,7 +40,7 @@ public class UserDAO
         return users;
     }
 
-    public static void addUser(User user) throws SQLException, ClassNotFoundException
+    public void addUser(User user) throws SQLException, ClassNotFoundException
     {
         String addUser = "insert into users(firstname, lastname, patronymic) VALUES (" + "'" + user.getFirstname() + "'" + "," + "'" + user.getLastname() + "'" + "," + "'" + user.getPatronymic() + "'" + ")";
 
@@ -49,44 +49,47 @@ public class UserDAO
 
     public User getUserByID(int id) throws SQLException, ClassNotFoundException
     {
-        String getUserByID = "select * from users where id = " + id;
+        String getUserByID = "select * from users where users.id = " + id;
 
         ResultSet resultSet = dbConnection.createStatement().executeQuery(getUserByID);
 
         User user = new User();
 
-        user.setId(resultSet.getInt("id"));
-        user.setFirstname(resultSet.getString("firstname"));
-        user.setLastname(resultSet.getString("lastname"));
-        user.setPatronymic(resultSet.getString("patronymic"));
+        while (resultSet.next())
+        {
+            user.setId(resultSet.getInt("id"));
+            user.setFirstname(resultSet.getString("firstname"));
+            user.setLastname(resultSet.getString("lastname"));
+            user.setPatronymic(resultSet.getString("patronymic"));
+        }
+
+        resultSet.close();
 
         return user;
     }
 
-    public static void updateUser(User user) throws SQLException, ClassNotFoundException
+    public void updateUser(User user) throws SQLException, ClassNotFoundException
     {
         String updateUser = "update users set firstname = " + "'" + user.getFirstname() + "'" + ", " + "lastname = " + "'" + user.getLastname() + "'" + ", " + "patronymic = " + "'" + user.getPatronymic() + "'" + " where id = " + user.getId();
 
         dbConnection.createStatement().execute(updateUser);
     }
 
-    public static void deleteUser(int id) throws SQLException, ClassNotFoundException
+    public void deleteUser(int id) throws SQLException, ClassNotFoundException
     {
         String deleteUser = "delete from users where id = " + id;
 
         dbConnection.createStatement().execute(deleteUser);
     }
 
-    public static void getDBConnection() throws ClassNotFoundException, SQLException
+    public void getDBConnection() throws ClassNotFoundException, SQLException
     {
-        Connection dbConnection = null;
-
         Class.forName(driver);
 
         dbConnection = DriverManager.getConnection(url, user, password);
     }
 
-    public static void closeConnection() throws SQLException
+    public void closeConnection() throws SQLException
     {
         dbConnection.close();
     }
