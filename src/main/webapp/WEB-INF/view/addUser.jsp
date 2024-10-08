@@ -1,30 +1,28 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false"%>
 
 <html>
     <body>
-        <h1>Add New Employee</h1>
-        <form:form method="post" action="save">
-            <table >
+        <h1>Add New User</h1>
+        <form method="post" action="save">
+            <table>
                 <tr>
-                    <td>Name : </td>
-                    <td><form:input path="firstName"  /></td>
+                    <td>first name</td>
+                    <td><input name="firstName" type="text"></td>
                 </tr>
                 <tr>
-                    <td>Salary :</td>
-                    <td><form:input path="lastName" /></td>
+                    <td>last name</td>
+                    <td><input name="lastName" type="text"></td>
                 </tr>
                 <tr>
-                    <td>Designation :</td>
-                    <td><form:input path="patronymic" /></td>
-                </tr>
-                <tr>
-                    <td> </td>
-                    <td><input type="submit" value="Save" /></td>
+                    <td>patronymic</td>
+                    <td><input name="patronymic" type="text"></td>
                 </tr>
             </table>
-        </form:form>
+            <input type="submit" value="submit">
+        </form>
     </body>
 </html>
 

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.lanit.mo.web.entity.User;
-import ru.lanit.mo.web.repository.UserDAO;
+import ru.lanit.mo.web.service.UserService;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -17,7 +17,15 @@ import java.util.List;
 public class UserController
 {
     @Autowired
-    UserDAO userDAO;
+    UserService userService;
+
+    @RequestMapping("/viewUsers")
+    public String viewUsers(Model model) throws SQLException, ClassNotFoundException
+    {
+        List<User> list = userService.getAllUsers();
+        model.addAttribute("users", list);
+        return "viewUsers";
+    }
 
     @RequestMapping("/addUser")
     public String showForm(Model model)
@@ -29,22 +37,14 @@ public class UserController
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveUser(@ModelAttribute("user") User user) throws SQLException, ClassNotFoundException
     {
-        UserDAO.addUser(user);
+        userService.addUser(user);
         return "redirect:/viewUsers";
-    }
-
-    @RequestMapping("/viewUsers")
-    public String viewUsers(Model model) throws SQLException, ClassNotFoundException
-    {
-        List<User> list = UserDAO.getAllUsers();
-        model.addAttribute("users", list);
-        return "viewUsers";
     }
 
     @RequestMapping(value = "/editUser/{id}")
     public String edit(@PathVariable int id, Model model) throws SQLException, ClassNotFoundException
     {
-        User user = userDAO.getUserByID(id);
+        User user = userService.getUserByID(id);
         model.addAttribute("user", user);
         return "editUser";
     }
@@ -52,14 +52,14 @@ public class UserController
     @RequestMapping(value = "/editSavedUser", method = RequestMethod.POST)
     public String editSavedUser(@ModelAttribute("user") User user) throws SQLException, ClassNotFoundException
     {
-        userDAO.updateUser(user);
+        userService.updateUser(user);
         return "redirect:/viewUsers";
     }
 
     @RequestMapping(value = "/deleteUser/{id}", method = RequestMethod.GET)
     public String deleteUser(@PathVariable int id) throws SQLException, ClassNotFoundException
     {
-        userDAO.deleteUser(id);
+        userService.deleteUser(id);
         return "redirect:/viewUsers";
     }
 }

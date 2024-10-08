@@ -18,14 +18,14 @@ public class tabulate extends HttpServlet
         String lastName = req.getParameter("lastName");
         String patronymic = req.getParameter("patronymic");
 
-        /*try
+        try
         {
             insertIntoUserTable(firstName, lastName, patronymic);
         }
         catch (SQLException e)
         {
             throw new RuntimeException(e);
-        }*/
+        }
 
         res.sendRedirect("/selectMouse");
     }
