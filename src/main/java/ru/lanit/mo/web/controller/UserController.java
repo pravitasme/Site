@@ -17,9 +17,9 @@ public class UserController
     UserService userService;
 
     @RequestMapping("/viewUsers")
-    public String viewUsers(Model model) throws SQLException, ClassNotFoundException
+    public String viewUsers(Model model)
     {
-        List<UserDTO> list = userService.getAllUsers();
+        List<UserDTO> list = userService.getAllUsers(); //here
         model.addAttribute("users", list);
         return "viewUsers";
     }
@@ -32,14 +32,14 @@ public class UserController
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveUser(@ModelAttribute("user") UserDTO userDTO) throws SQLException, ClassNotFoundException
+    public String saveUser(@ModelAttribute("user") UserDTO userDTO)
     {
         userService.addUser(userDTO);
         return "redirect:/viewUsers";
     }
 
     @RequestMapping(value = "/userEdit/{id}")
-    public String edit(@PathVariable int id, Model model) throws SQLException, ClassNotFoundException
+    public String edit(@PathVariable int id, Model model)
     {
         UserDTO userDTO = userService.getUserByID(id);
         model.addAttribute("user", userDTO);
@@ -47,14 +47,14 @@ public class UserController
     }
 
     @RequestMapping(value = "/saveEditedUser", method = RequestMethod.POST)
-    public String saveEditedUser(@ModelAttribute("user") UserDTO userDTO) throws SQLException, ClassNotFoundException
+    public String saveEditedUser(@ModelAttribute("user") UserDTO userDTO)
     {
         userService.updateUser(userDTO);
         return "redirect:/viewUsers";
     }
 
     @RequestMapping(value = "/deleteUser/{id}", method = RequestMethod.GET)
-    public String deleteUser(@PathVariable int id) throws SQLException, ClassNotFoundException
+    public String deleteUser(@PathVariable int id)
     {
         userService.deleteUser(id);
         return "redirect:/viewUsers";

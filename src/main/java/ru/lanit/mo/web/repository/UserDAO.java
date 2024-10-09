@@ -1,96 +1,70 @@
 package ru.lanit.mo.web.repository;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
 import ru.lanit.mo.web.entity.UserDTO;
+import ru.lanit.mo.web.models.User;
+import ru.lanit.mo.web.utils.HibernateSessionFactoryUtil;
 
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class UserDAO
 {
-    static String driver = "org.postgresql.Driver";
-    static String url = "jdbc:postgresql://localhost:5432/postgres";
-    static String user = "postgres";
-    static String password = "1324";
-
-    static Connection dbConnection = null;
-
-    public List<UserDTO> getAllUsers() throws SQLException, ClassNotFoundException
+    public List<UserDTO> getAllUsers()
     {
-        String selectFromUser = "select * from users";
-
-        List<UserDTO> userDTOS = new ArrayList<UserDTO>();
-
-        ResultSet resultSet = dbConnection.createStatement().executeQuery(selectFromUser);
-
-        while (resultSet.next())
-        {
-            UserDTO userDTO = new UserDTO();
-            userDTO.setId(resultSet.getInt("id"));
-            userDTO.setFirstname(resultSet.getString("firstname"));
-            userDTO.setLastname(resultSet.getString("lastname"));
-            userDTO.setPatronymic(resultSet.getString("patronymic"));
-            userDTOS.add(userDTO);
-        }
-
-        resultSet.close();
-
-        return userDTOS;
+        ModelMapper modelMapper = new ModelMapper();
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession(); //here
+        Transaction tx = session.beginTransaction();
+        Query query = session.createQuery("from User");
+        List users = query.list();
+        tx.commit();
+        session.close();
+        return (List<UserDTO>) users.stream().map(user -> modelMapper.map(user, UserDTO.class)).collect(Collectors.toList());
     }
 
-    public void addUser(UserDTO userDTO) throws SQLException, ClassNotFoundException
+    public void addUser(UserDTO userDTO)
     {
-        String addUser = "insert into users(firstname, lastname, patronymic) VALUES (" + "'" + userDTO.getFirstname() + "'" + "," + "'" + userDTO.getLastname() + "'" + "," + "'" + userDTO.getPatronymic() + "'" + ")";
-
-        dbConnection.createStatement().execute(addUser);
+        ModelMapper modelMapper = new ModelMapper();
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        session.save(modelMapper.map(userDTO, User.class));
+        tx.commit();
+        session.close();
     }
 
-    public UserDTO getUserByID(int id) throws SQLException, ClassNotFoundException
+    public UserDTO getUserByID(int id)
     {
-        String getUserByID = "select * from users where users.id = " + id;
-
-        ResultSet resultSet = dbConnection.createStatement().executeQuery(getUserByID);
-
-        UserDTO userDTO = new UserDTO();
-
-        while (resultSet.next())
-        {
-            userDTO.setId(resultSet.getInt("id"));
-            userDTO.setFirstname(resultSet.getString("firstname"));
-            userDTO.setLastname(resultSet.getString("lastname"));
-            userDTO.setPatronymic(resultSet.getString("patronymic"));
-        }
-
-        resultSet.close();
-
-        return userDTO;
+        ModelMapper modelMapper = new ModelMapper();
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        User user = (User) session.get(User.class, id);
+        tx.commit();
+        session.close();
+        return modelMapper.map(user, UserDTO.class);
     }
 
-    public void updateUser(UserDTO userDTO) throws SQLException, ClassNotFoundException
+    public void updateUser(UserDTO userDTO)
     {
-        String updateUser = "update users set firstname = " + "'" + userDTO.getFirstname() + "'" + ", " + "lastname = " + "'" + userDTO.getLastname() + "'" + ", " + "patronymic = " + "'" + userDTO.getPatronymic() + "'" + " where id = " + userDTO.getId();
-
-        dbConnection.createStatement().execute(updateUser);
+        ModelMapper modelMapper = new ModelMapper();
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        session.update(modelMapper.map(userDTO, User.class));
+        tx.commit();
+        session.close();
     }
 
-    public void deleteUser(int id) throws SQLException, ClassNotFoundException
+    public void deleteUser(int id)
     {
-        String deleteUser = "delete from users where id = " + id;
-
-        dbConnection.createStatement().execute(deleteUser);
-    }
-
-    public void getDBConnection() throws ClassNotFoundException, SQLException
-    {
-        Class.forName(driver);
-
-        dbConnection = DriverManager.getConnection(url, user, password);
-    }
-
-    public void closeConnection() throws SQLException
-    {
-        dbConnection.close();
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        User user = session.get(User.class, id);
+        session.delete(user);
+        tx.commit();
+        session.close();
     }
 }

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import ru.lanit.mo.web.entity.UserDTO;
 import ru.lanit.mo.web.repository.UserDAO;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -19,40 +18,28 @@ public class UserService
         this.userDAO = userDAO;
     }
 
-    public List<UserDTO> getAllUsers() throws SQLException, ClassNotFoundException
+    public List<UserDTO> getAllUsers()
     {
-        userDAO.getDBConnection();
-        List<UserDTO> userDTOS = userDAO.getAllUsers();
-        userDAO.closeConnection();
-        return userDTOS;
+        return userDAO.getAllUsers();
     }
 
-    public void addUser(UserDTO userDTO) throws SQLException, ClassNotFoundException
+    public void addUser(UserDTO userDTO)
     {
-        userDAO.getDBConnection();
         userDAO.addUser(userDTO);
-        userDAO.closeConnection();
     }
 
-    public UserDTO getUserByID(int id) throws SQLException, ClassNotFoundException
+    public UserDTO getUserByID(int id)
     {
-        userDAO.getDBConnection();
-        UserDTO userDTO = userDAO.getUserByID(id);
-        userDAO.closeConnection();
-        return userDTO;
+        return userDAO.getUserByID(id);
     }
 
-    public void updateUser(UserDTO userDTO) throws SQLException, ClassNotFoundException
+    public void updateUser(UserDTO userDTO)
     {
-        userDAO.getDBConnection();
         userDAO.updateUser(userDTO);
-        userDAO.closeConnection();
     }
 
-    public void deleteUser(int id) throws SQLException, ClassNotFoundException
+    public void deleteUser(int id)
     {
-        userDAO.getDBConnection();
         userDAO.deleteUser(id);
-        userDAO.closeConnection();
     }
 }

@@ -6,6 +6,7 @@ public class UserDTO
     private String firstname;
     private String lastname;
     private String patronymic;
+    private UserDTO userDTO;
 
     public int getId()
     {
@@ -45,5 +46,15 @@ public class UserDTO
     public void setPatronymic(String patronymic)
     {
         this.patronymic = patronymic;
+    }
+
+    public UserDTO getUserDTO()
+    {
+        return userDTO;
+    }
+
+    public void setUserDTO(UserDTO userDTO)
+    {
+        this.userDTO = userDTO;
     }
 }
