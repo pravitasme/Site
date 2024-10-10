@@ -8,6 +8,11 @@ public class UserDTO
     private String patronymic;
     private UserDTO userDTO;
 
+    public UserDTO()
+    {
+
+    }
+
     public int getId()
     {
         return id;

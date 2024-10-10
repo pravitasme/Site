@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.lanit.mo.web.entity.UserDTO;
 import ru.lanit.mo.web.service.UserService;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @Controller

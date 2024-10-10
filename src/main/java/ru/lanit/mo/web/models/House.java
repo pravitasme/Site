@@ -1,7 +1,6 @@
 package ru.lanit.mo.web.models;
 
-import jakarta.persistence.*;
-
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +17,7 @@ public class House
     @Column(name = "color")
     private String color;
 
-    //orphanRemoval - удаление бездомных
-    @OneToMany(mappedBy = "house", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "house", cascade = CascadeType.ALL, orphanRemoval = true) //orphanRemoval - удаление бездомных
     private List<User> users;
 
     public House()

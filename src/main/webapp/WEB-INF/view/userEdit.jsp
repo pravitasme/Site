@@ -1,18 +1,18 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page isELIgnored="false"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page isELIgnored="true"%>
 
 <html>
     <body>
         <h1>Edit User</h1>
-        <%--@elvariable id="userDTO" type="ru.lanit.mo.web.entity.UserDTO"--%>
-        <form:form method="post" action="/saveEditedUser" modelAttribute="userDTO">
+        <%--@elvariable id="user" type="ru.lanit.mo.web.entity.UserDTO"--%>
+        <form:form method="post" action="/saveEditedUser" modelAttribute="user">
             <table>
                 <tr>
                     <td></td>
-                    <td><form:hidden path="id" /></td>
+                    <td><form:hidden path="id"/></td>
                 </tr>
                 <tr>
                     <td>first name : </td>
@@ -27,7 +27,7 @@
                     <td><form:input path="patronymic"/></td>
                 </tr>
             </table>
-            <input type="submit" value="save edited userDTO" />
+            <input type="submit" value="save edited user" />
         </form:form>
     </body>
 </html>
