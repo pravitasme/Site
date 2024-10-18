@@ -31,6 +31,11 @@ public class User
         this.patronymic = patronymic;
     }
 
+    public void setId(int id)
+    {
+        this.id = id;
+    }
+
     public int getId()
     {
         return id;
