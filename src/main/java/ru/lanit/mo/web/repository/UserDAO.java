@@ -62,7 +62,7 @@ public class UserDAO
         ModelMapper modelMapper = new ModelMapper();
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
-        session.save(modelMapper.map(userDTO, User.class));
+        session.update(modelMapper.map(userDTO, User.class));
         tx.commit();
         session.close();
     }
