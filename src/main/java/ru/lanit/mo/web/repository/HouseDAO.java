@@ -1,14 +1,11 @@
 package ru.lanit.mo.web.repository;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
 import ru.lanit.mo.web.entity.HouseDTO;
-import ru.lanit.mo.web.entity.UserDTO;
 import ru.lanit.mo.web.models.House;
 import ru.lanit.mo.web.utils.HibernateSessionFactoryUtil;
 
@@ -16,10 +13,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
-public class HouseDAO
-{
-    public List<HouseDTO> getAllHouses()
-    {
+public class HouseDAO {
+
+    public List<HouseDTO> getAllHouses() {
         ModelMapper modelMapper = new ModelMapper();
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
@@ -30,8 +26,7 @@ public class HouseDAO
         return houseDTOS;
     }
 
-    public void addHouse(HouseDTO houseDTO)
-    {
+    public void addHouse(HouseDTO houseDTO) {
         ModelMapper modelMapper = new ModelMapper();
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
@@ -40,8 +35,7 @@ public class HouseDAO
         session.close();
     }
 
-    public void deleteHouse(int id)
-    {
+    public void deleteHouse(int id) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         House house = session.get(House.class, id);

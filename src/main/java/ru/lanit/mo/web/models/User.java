@@ -4,8 +4,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class User
-{
+public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -20,71 +20,50 @@ public class User
     @JoinColumn(name = "house_id")
     private House house;
 
-    public User()
-    {
-    }
+    public User() {}
 
-    /*public User(String firstname, String lastname, String patronymic, House house)
-    {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.patronymic = patronymic;
-        this.house = house;
-    }*/
-
-    public void setId(int id)
-    {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public int getId()
-    {
+    public int getId() {
         return id;
     }
 
-    public String getFirstname()
-    {
+    public String getFirstname() {
         return firstname;
     }
 
-    public void setFirstname(String firstname)
-    {
+    public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
 
-    public String getLastname()
-    {
+    public String getLastname() {
         return lastname;
     }
 
-    public void setLastname(String lastname)
-    {
+    public void setLastname(String lastname) {
         this.lastname = lastname;
     }
 
-    public String getPatronymic()
-    {
+    public String getPatronymic() {
         return patronymic;
     }
 
-    public void setPatronymic(String patronymic)
-    {
+    public void setPatronymic(String patronymic) {
         this.patronymic = patronymic;
     }
 
-    public House getHouse()
-    {
+    public House getHouse() {
         return house;
     }
 
-    public void setHouse(House house)
-    {
+    public void setHouse(House house) {
         this.house = house;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return firstname + " " + lastname + " " + patronymic;
     }
 }

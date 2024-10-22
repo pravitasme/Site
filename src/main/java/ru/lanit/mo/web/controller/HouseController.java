@@ -13,36 +13,32 @@ import ru.lanit.mo.web.service.HouseService;
 import java.util.List;
 
 @Controller
-public class HouseController
-{
+public class HouseController {
+
     @Autowired
     HouseService houseService;
 
     @RequestMapping("/viewHouses")
-    public String viewHouses(Model model)
-    {
+    public String viewHouses(Model model) {
         List<HouseDTO> list = houseService.getAllHouses();
         model.addAttribute("houses", list);
         return "viewHouses";
     }
 
     @RequestMapping("/houseAdd")
-    public String showForm(Model model)
-    {
+    public String showForm(Model model) {
         model.addAttribute("house", new HouseDTO());
         return "houseAdd";
     }
 
     @RequestMapping( value = "/saveHouse", method = RequestMethod.POST)
-    public String saveHouse(@ModelAttribute("house") HouseDTO houseDTO)
-    {
+    public String saveHouse(@ModelAttribute("house") HouseDTO houseDTO) {
         houseService.addHouse(houseDTO);
         return "redirect:/viewHouses";
     }
 
     @RequestMapping(value = "/deleteHouse/{id}")
-    public String deleteHouse(@PathVariable("id") int id)
-    {
+    public String deleteHouse(@PathVariable("id") int id) {
         houseService.deleteHouse(id);
         return "redirect:/viewHouses";
     }

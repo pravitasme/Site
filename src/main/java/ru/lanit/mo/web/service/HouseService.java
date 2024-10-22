@@ -10,28 +10,24 @@ import ru.lanit.mo.web.repository.HouseDAO;
 import java.util.List;
 
 @Service
-public class HouseService
-{
+public class HouseService {
+
     private final HouseDAO houseDAO;
 
     @Autowired
-    public HouseService(HouseDAO houseDAO)
-    {
+    public HouseService(HouseDAO houseDAO) {
         this.houseDAO = houseDAO;
     }
 
-    public List<HouseDTO> getAllHouses()
-    {
+    public List<HouseDTO> getAllHouses() {
         return houseDAO.getAllHouses();
     }
 
-    public void addHouse(HouseDTO houseDTO)
-    {
+    public void addHouse(HouseDTO houseDTO) {
         houseDAO.addHouse(houseDTO);
     }
 
-    public void deleteHouse(int id)
-    {
+    public void deleteHouse(int id) {
         houseDAO.deleteHouse(id);
     }
 }

@@ -1,15 +1,13 @@
 package ru.lanit.mo.web.models;
 
-import org.hibernate.annotations.Proxy;
-
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "houses")
 //@Proxy(lazy=false)
-public class House
-{
+public class House {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int house_id;
@@ -22,72 +20,57 @@ public class House
     @OneToMany(mappedBy = "house", cascade = CascadeType.ALL, orphanRemoval = true) //orphanRemoval - удаление бездомных
     private List<User> users;
 
-    public House()
-    {
+    public House() {}
 
-    }
-
-    public House(int house_id, String address, String color)
-    {
+    public House(int house_id, String address, String color) {
         this.house_id = house_id;
         this.address = address;
         this.color = color;
     }
 
-    public void addUser(User user)
-    {
+    public void addUser(User user) {
         user.setHouse(this);
         users.add(user);
     }
 
-    public void removeUser(User user)
-    {
+    public void removeUser(User user) {
         users.remove(user);
     }
 
-    public void setHouse_id(int id)
-    {
+    public void setHouse_id(int id) {
         this.house_id = id;
     }
 
-    public int getHouse_id()
-    {
+    public int getHouse_id() {
         return house_id;
     }
 
-    public String getAddress()
-    {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address)
-    {
+    public void setAddress(String address) {
         this.address = address;
     }
 
-    public String getColor()
-    {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(String color)
-    {
+    public void setColor(String color) {
         this.color = color;
     }
 
-    public List<User> getUsers()
-    {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users)
-    {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "models.House{" +
                 "id=" + house_id +
                 ", address='" + address + '\'' +

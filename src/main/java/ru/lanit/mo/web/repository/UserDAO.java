@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 @Repository
 public class UserDAO {
+
     public List<UserDTO> getAllUsers() {
         ModelMapper modelMapper = new ModelMapper();
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
@@ -26,19 +27,7 @@ public class UserDAO {
         return userDTOS;
     }
 
-    public List<User> getAllUsers2()
-    {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx = session.beginTransaction();
-        Query<User> query = session.createQuery("from User", User.class);
-        List<User> users = query.list();
-        users.forEach(user -> Hibernate.initialize(user.getHouse()));
-        session.close();
-        return users;
-    }
-
-    public void addUser(UserDTO userDTO)
-    {
+    public void addUser(UserDTO userDTO) {
         ModelMapper modelMapper = new ModelMapper();
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
@@ -47,8 +36,7 @@ public class UserDAO {
         session.close();
     }
 
-    public UserDTO getUserByID(int id)
-    {
+    public UserDTO getUserByID(int id) {
         ModelMapper modelMapper = new ModelMapper();
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
@@ -60,8 +48,7 @@ public class UserDAO {
         return userDTO;
     }
 
-    public void updateUser(UserDTO userDTO)
-    {
+    public void updateUser(UserDTO userDTO) {
         ModelMapper modelMapper = new ModelMapper();
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
@@ -70,8 +57,7 @@ public class UserDAO {
         session.close();
     }
 
-    public void deleteUser(int id)
-    {
+    public void deleteUser(int id) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         User user = session.get(User.class, id);
