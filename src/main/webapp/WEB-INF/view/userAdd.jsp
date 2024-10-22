@@ -6,7 +6,7 @@
 <html>
     <body>
         <h1>Add New User</h1>
-        <form method="post" action="save">
+        <form method="post" action="saveUser">
             <table>
                 <tr>
                     <td>first name</td>

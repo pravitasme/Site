@@ -1,16 +1,18 @@
 package ru.lanit.mo.web.models;
 
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "houses")
+//@Proxy(lazy=false)
 public class House
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int house_id;
 
     @Column(name = "address")
     private String address;
@@ -25,11 +27,11 @@ public class House
 
     }
 
-    public House(String address, String color)
+    public House(int house_id, String address, String color)
     {
+        this.house_id = house_id;
         this.address = address;
         this.color = color;
-        users = new ArrayList<User>();
     }
 
     public void addUser(User user)
@@ -43,9 +45,14 @@ public class House
         users.remove(user);
     }
 
-    public int getId()
+    public void setHouse_id(int id)
     {
-        return id;
+        this.house_id = id;
+    }
+
+    public int getHouse_id()
+    {
+        return house_id;
     }
 
     public String getAddress()
@@ -82,7 +89,7 @@ public class House
     public String toString()
     {
         return "models.House{" +
-                "id=" + id +
+                "id=" + house_id +
                 ", address='" + address + '\'' +
                 ", color=" + color +
                 '}';

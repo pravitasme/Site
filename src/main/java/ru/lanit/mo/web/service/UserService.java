@@ -2,7 +2,9 @@ package ru.lanit.mo.web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.lanit.mo.web.entity.UserDTO;
+import ru.lanit.mo.web.models.User;
 import ru.lanit.mo.web.repository.UserDAO;
 
 import java.util.List;
@@ -21,6 +23,11 @@ public class UserService
     public List<UserDTO> getAllUsers()
     {
         return userDAO.getAllUsers();
+    }
+
+    public List<User> getAllUsers2()
+    {
+        return userDAO.getAllUsers2();
     }
 
     public void addUser(UserDTO userDTO)

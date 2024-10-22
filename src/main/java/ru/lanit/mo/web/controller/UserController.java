@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.lanit.mo.web.entity.HouseDTO;
 import ru.lanit.mo.web.entity.UserDTO;
+import ru.lanit.mo.web.models.User;
+import ru.lanit.mo.web.service.HouseService;
 import ru.lanit.mo.web.service.UserService;
 
 import java.util.List;
@@ -15,10 +18,14 @@ public class UserController
     @Autowired
     UserService userService;
 
+    @Autowired
+    HouseService houseService;
+
     @RequestMapping("/viewUsers")
     public String viewUsers(Model model)
     {
-        List<UserDTO> list = userService.getAllUsers(); //here
+        //List<UserDTO> list = userService.getAllUsers();
+        List<User> list = userService.getAllUsers2();
         model.addAttribute("users", list);
         return "viewUsers";
     }
@@ -30,7 +37,7 @@ public class UserController
         return "userAdd";
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
     public String saveUser(@ModelAttribute("user") UserDTO userDTO)
     {
         userService.addUser(userDTO);
@@ -41,7 +48,9 @@ public class UserController
     public String edit(@PathVariable int id, Model model)
     {
         UserDTO userDTO = userService.getUserByID(id);
+        List<HouseDTO> houses = houseService.getAllHouses();
         model.addAttribute("user", userDTO);
+        model.addAttribute("houses", houses);
         return "userEdit";
     }
 

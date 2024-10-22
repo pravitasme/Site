@@ -1,38 +1,27 @@
 package ru.lanit.mo.web.entity;
 
-import java.awt.*;
 import java.util.List;
 
 public class HouseDTO
 {
-    private int id;
+    private int house_id;
     private String address;
     private String color;
     private List<UserDTO> users;
 
-    public HouseDTO(int id, String address, String color, List<UserDTO> users)
+    public HouseDTO()
     {
-        this.id = id;
-        this.address = address;
-        this.color = color;
-        this.users = users;
+
     }
 
-    public HouseDTO(String address, String color, List<UserDTO> users)
+    public int getHouse_id()
     {
-        this.address = address;
-        this.color = color;
-        this.users = users;
+        return house_id;
     }
 
-    public int getId()
+    public void setHouse_id(int house_id)
     {
-        return id;
-    }
-
-    public void setId(int id)
-    {
-        this.id = id;
+        this.house_id = house_id;
     }
 
     public String getAddress()

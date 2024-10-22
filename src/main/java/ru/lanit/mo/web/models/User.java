@@ -24,12 +24,13 @@ public class User
     {
     }
 
-    public User(String firstname, String lastname, String patronymic)
+    /*public User(String firstname, String lastname, String patronymic, House house)
     {
         this.firstname = firstname;
         this.lastname = lastname;
         this.patronymic = patronymic;
-    }
+        this.house = house;
+    }*/
 
     public void setId(int id)
     {

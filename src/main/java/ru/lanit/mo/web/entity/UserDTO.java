@@ -6,7 +6,7 @@ public class UserDTO
     private String firstname;
     private String lastname;
     private String patronymic;
-    /*private UserDTO userDTO;*/
+    private HouseDTO house;
 
     public UserDTO()
     {
@@ -53,13 +53,13 @@ public class UserDTO
         this.patronymic = patronymic;
     }
 
-    /*public UserDTO getUserDTO()
+    public HouseDTO getHouse()
     {
-        return userDTO;
+        return house;
     }
 
-    public void setUserDTO(UserDTO userDTO)
+    public void setHouse(HouseDTO house)
     {
-        this.userDTO = userDTO;
-    }*/
+        this.house = house;
+    }
 }

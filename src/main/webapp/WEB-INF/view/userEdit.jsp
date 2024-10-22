@@ -26,6 +26,18 @@
                     <td>patronymic :</td>
                     <td><form:input path="patronymic"/></td>
                 </tr>
+                <tr>
+                    <td>House Address: </td>
+                    <td>
+                        <form:select path="house.house_id">
+                            <jsp:useBean id="houses" scope="request" type="java.util.List"/>
+                            <c:forEach var="item" items="${houses}">
+                                <form:option value="${item.house_id}">${item.address} ${item.color}</form:option>
+                            </c:forEach>
+                        </form:select>
+                    </td>
+                </tr>
+
             </table>
             <input type="submit" value="save edited user" />
         </form:form>

@@ -1,9 +1,8 @@
 package ru.lanit.mo.web.repository;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
@@ -15,25 +14,27 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
-public class UserDAO
-{
-    SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
-
-    public void setSessionFactory(SessionFactory sf)
-    {
-        this.sessionFactory = sf;
-    }
-
-    public List<UserDTO> getAllUsers()
-    {
+public class UserDAO {
+    public List<UserDTO> getAllUsers() {
         ModelMapper modelMapper = new ModelMapper();
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession(); //here
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
-        Query query = session.createQuery("from User");
-        List users = query.list();
+        Query<User> query = session.createQuery("from User", User.class);
+        List<UserDTO> userDTOS = query.stream().map(user -> modelMapper.map(user, UserDTO.class)).collect(Collectors.toList());
         tx.commit();
         session.close();
-        return (List<UserDTO>) users.stream().map(user -> modelMapper.map(user, UserDTO.class)).collect(Collectors.toList());
+        return userDTOS;
+    }
+
+    public List<User> getAllUsers2()
+    {
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        Query<User> query = session.createQuery("from User", User.class);
+        List<User> users = query.list();
+        users.forEach(user -> Hibernate.initialize(user.getHouse()));
+        session.close();
+        return users;
     }
 
     public void addUser(UserDTO userDTO)
@@ -51,10 +52,12 @@ public class UserDAO
         ModelMapper modelMapper = new ModelMapper();
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
-        User user = session.get(User.class, id);
+        Query<User> query = session.createQuery("from User where id = :id", User.class);
+        query.setParameter("id", id);
+        UserDTO userDTO = modelMapper.map(query.getSingleResult(), UserDTO.class);
         tx.commit();
         session.close();
-        return modelMapper.map(user, UserDTO.class);
+        return userDTO;
     }
 
     public void updateUser(UserDTO userDTO)
