@@ -19,14 +19,17 @@ public class HouseService {
         this.houseDAO = houseDAO;
     }
 
+    @Transactional
     public List<HouseDTO> getAllHouses() {
         return houseDAO.getAllHouses();
     }
 
+    @Transactional
     public void addHouse(HouseDTO houseDTO) {
         houseDAO.addHouse(houseDTO);
     }
 
+    @Transactional
     public void deleteHouse(int id) {
         houseDAO.deleteHouse(id);
     }

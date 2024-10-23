@@ -1,11 +1,15 @@
 package ru.lanit.mo.web.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "houses")
-//@Proxy(lazy=false)
+@Proxy(lazy = false)
 public class House {
 
     @Id
@@ -17,7 +21,9 @@ public class House {
     @Column(name = "color")
     private String color;
 
+
     @OneToMany(mappedBy = "house", cascade = CascadeType.ALL, orphanRemoval = true) //orphanRemoval - удаление бездомных
+    @JsonIgnore
     private List<User> users;
 
     public House() {}
@@ -61,10 +67,12 @@ public class House {
         this.color = color;
     }
 
+    @JsonIgnore
     public List<User> getUsers() {
         return users;
     }
 
+    @JsonProperty
     public void setUsers(List<User> users) {
         this.users = users;
     }

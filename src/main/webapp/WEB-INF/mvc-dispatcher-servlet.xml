@@ -18,6 +18,7 @@
     <context:component-scan base-package="ru.lanit.mo.web.controller" />
     <context:component-scan base-package="ru.lanit.mo.web.service" />
     <context:component-scan base-package="ru.lanit.mo.web.repository" />
+    <context:component-scan base-package="ru.lanit.mo.web.restController" />
     <mvc:annotation-driven/>
 
     <!--<jpa:repositories base-package="ru.lanit.mo.web.repository"/>-->

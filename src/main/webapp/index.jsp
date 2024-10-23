@@ -7,5 +7,7 @@
         <a href="viewHouses">Show all houses.</a>
         <br> <br>
         <a href="houseAdd">Add new house.</a>
+        <br> <br>
+        <a href="JSON">JSON.</a>
     </body>
 </html>

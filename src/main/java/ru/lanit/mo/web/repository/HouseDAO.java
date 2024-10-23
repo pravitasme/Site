@@ -21,7 +21,7 @@ public class HouseDAO {
         Transaction tx = session.beginTransaction();
         Query<House> query = session.createQuery("from House", House.class);
         List<HouseDTO> houseDTOS = query.stream().map(house -> modelMapper.map(house, HouseDTO.class)).collect(Collectors.toList());
-        tx.commit();
+        //tx.commit();
         session.close();
         return houseDTOS;
     }

@@ -1,6 +1,5 @@
 package ru.lanit.mo.web.repository;
 
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -22,7 +21,7 @@ public class UserDAO {
         Transaction tx = session.beginTransaction();
         Query<User> query = session.createQuery("from User", User.class);
         List<UserDTO> userDTOS = query.stream().map(user -> modelMapper.map(user, UserDTO.class)).collect(Collectors.toList());
-        tx.commit();
+        //tx.commit();
         session.close();
         return userDTOS;
     }
@@ -43,7 +42,7 @@ public class UserDAO {
         Query<User> query = session.createQuery("from User where id = :id", User.class);
         query.setParameter("id", id);
         UserDTO userDTO = modelMapper.map(query.getSingleResult(), UserDTO.class);
-        tx.commit();
+        //tx.commit();
         session.close();
         return userDTO;
     }

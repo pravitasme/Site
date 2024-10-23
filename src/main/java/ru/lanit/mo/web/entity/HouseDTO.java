@@ -7,7 +7,7 @@ public class HouseDTO {
     private int house_id;
     private String address;
     private String color;
-    private List<UserDTO> users;
+    //private List<UserDTO> users;
 
     public HouseDTO() {}
 
@@ -35,11 +35,11 @@ public class HouseDTO {
         this.color = color;
     }
 
-    public List<UserDTO> getUsers() {
+    /*public List<UserDTO> getUsers() {
         return users;
     }
 
     public void setUsers(List<UserDTO> users) {
         this.users = users;
-    }
+    }*/
 }
