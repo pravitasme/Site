@@ -3,8 +3,8 @@ package ru.lanit.mo.web.utils;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import ru.lanit.mo.web.models.House;
-import ru.lanit.mo.web.models.User;
+import ru.lanit.mo.web.models.Car;
+import ru.lanit.mo.web.models.Person;
 
 public class HibernateSessionFactoryUtil {
 
@@ -16,8 +16,8 @@ public class HibernateSessionFactoryUtil {
         if(sessionFactory == null) {
             try {
                 Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
-                configuration.addAnnotatedClass(User.class);
-                configuration.addAnnotatedClass(House.class);
+                configuration.addAnnotatedClass(Person.class);
+                configuration.addAnnotatedClass(Car.class);
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());
             }

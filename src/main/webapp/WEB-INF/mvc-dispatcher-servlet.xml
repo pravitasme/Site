@@ -15,7 +15,6 @@
      http://www.springframework.org/schema/mvc
      http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
-    <context:component-scan base-package="ru.lanit.mo.web.controller" />
     <context:component-scan base-package="ru.lanit.mo.web.service" />
     <context:component-scan base-package="ru.lanit.mo.web.repository" />
     <context:component-scan base-package="ru.lanit.mo.web.restController" />

@@ -13,10 +13,10 @@
         <property name="show_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
         <property name="format_sql">true</property>
-        <property name="connection.pool_size">3</property>
+        <property name="connection.pool_size">138</property>
 
-        <mapping class="ru.lanit.mo.web.models.User"/>
-        <mapping class="ru.lanit.mo.web.models.House"/>
+        <mapping class="ru.lanit.mo.web.models.Person"/>
+        <mapping class="ru.lanit.mo.web.models.Car"/>
     </session-factory>
 </hibernate-configuration>
 
