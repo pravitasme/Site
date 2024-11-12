@@ -7,6 +7,7 @@ import ru.lanit.mo.web.config.CustLocalDateSerializer;
 
 import java.util.List;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class PersonDTO {
 
@@ -19,6 +20,13 @@ public class PersonDTO {
     private LocalDate birthdate;
 
     private PersonDTO() {}
+
+    public PersonDTO(Long id, String name, List<CarDTO> cars, LocalDate birthdate) {
+        this.id = id;
+        this.name = name;
+        this.cars = cars;
+        this.birthdate = birthdate;
+    }
 
     public Long getId() {
         return id;
@@ -52,4 +60,16 @@ public class PersonDTO {
         this.cars = cars;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PersonDTO personDTO = (PersonDTO) o;
+        return Objects.equals(id, personDTO.id) && Objects.equals(name, personDTO.name) && Objects.equals(cars, personDTO.cars) && Objects.equals(birthdate, personDTO.birthdate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, cars, birthdate);
+    }
 }

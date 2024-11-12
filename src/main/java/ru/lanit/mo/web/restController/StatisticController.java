@@ -25,5 +25,4 @@ public class StatisticController {
         StatisticDTO statistics = statisticService.getStatistic();
         return new ResponseEntity<>(statistics, HttpStatus.OK);
     }
-
 }

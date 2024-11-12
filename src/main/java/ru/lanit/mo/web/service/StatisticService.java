@@ -22,7 +22,7 @@ public class StatisticService {
         this.personService = personService;
     }
 
-    StatisticDTO statistic = new StatisticDTO();
+    StatisticDTO statistic = new StatisticDTO(0L, 0L, 0L);
     HashSet<String> vendors = new HashSet<>();
 
     public StatisticDTO getStatistic() {
