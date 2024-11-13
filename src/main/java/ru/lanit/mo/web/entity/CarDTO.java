@@ -52,8 +52,12 @@ public class CarDTO {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         CarDTO carDTO = (CarDTO) o;
         return horsepower == carDTO.horsepower && Objects.equals(id, carDTO.id) && Objects.equals(model, carDTO.model) && Objects.equals(ownerId, carDTO.ownerId);
     }

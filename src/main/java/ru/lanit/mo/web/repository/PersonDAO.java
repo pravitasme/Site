@@ -20,6 +20,7 @@ public class PersonDAO {
         Transaction tx = session.beginTransaction();
         try {
             ModelMapper modelMapper = new ModelMapper();
+            Person person = modelMapper.map(personDTO, Person.class);
             session.save(modelMapper.map(personDTO, Person.class));
             tx.commit();
         } catch (Exception e) {

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CarDAOTest {
 
@@ -30,7 +31,7 @@ public class CarDAOTest {
         List<CarDTO> cars = new ArrayList<>();
         cars.add(goodCar);
         cars.add(goodCar2);
-        person = new PersonDTO(-1L, "name", cars, LocalDate.now().minusYears(20));
+        person = new PersonDTO(-1L, "name", null, LocalDate.now().minusYears(20));
     }
 
     @Test
